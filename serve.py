@@ -5,6 +5,7 @@ from flask_limiter.util import get_remote_address
 from urllib.parse import urlparse
 
 app = Flask(__name__)
+
 # Limiter settings
 limiter = Limiter(
     get_remote_address,
