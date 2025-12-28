@@ -44,9 +44,7 @@ def main(URL):
             "time" : t,
             "destinaton": l
         })
-
-    with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(data_list,f,ensure_ascii=False,indent=4)
+    return data_list
 
 def is_valid_url(url):
     try:
