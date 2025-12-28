@@ -1,3 +1,4 @@
 env
 timetable.json
 __pycache__
+.DS_Store
