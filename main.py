@@ -1,10 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
+import argparse
 import json
 import argparse
+from urllib.parse import urlparse
 
 file_path = 'timetable.json'
 
+# スクレイピング
 def main(URL):
     try:
         req = requests.get(URL)
@@ -45,7 +48,18 @@ def main(URL):
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data_list,f,ensure_ascii=False,indent=4)
 
+def is_valid_url(url):
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except:
+        return False
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('[URL]')
-    main("https://busit.jp/stop/10001157")
+    parser = argparse.ArgumentParser(description="某バスの時刻表をスクレイピングするやつ")
+    parser.add_argument("url", help="某バスの取得したい時刻表のページのURL")
+    args = parser.parse_args()
+    if not is_valid_url(args.url):
+        print("エラー：有効なURLではありません")
+    else:
+        main(args.url)
