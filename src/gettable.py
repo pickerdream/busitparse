@@ -5,8 +5,6 @@ import json
 import argparse
 from urllib.parse import urlparse
 
-file_path = 'timetable.json'
-
 # スクレイピング
 def main(URL):
     try:
